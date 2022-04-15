@@ -256,17 +256,35 @@ const device = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera/i.test(
   ? "mobile"
   : "desktop";
 
-addEventListener("click", function fire(e) {
-  const vx = e.clientX - canvas.width / 2;
-  const vy = e.clientY - canvas.height / 2;
-  const angle = Math.atan2(vy, vx);
 
-  const projectile = new Projectile(x, y, 5, "white", {
-    x: Math.cos(angle) * 4,
-    y: Math.sin(angle) * 4,
+if(device === "mobile") {
+  addEventListener("touchstart", function fire(e) {
+    
+    const vx = e.touches[0].clientX - canvas.width / 2;
+    const vy = e.touches[0].clientY - canvas.height / 2;
+    const angle = Math.atan2(vy, vx);
+  
+    const projectile = new Projectile(x, y, 5, "white", {
+      x: Math.cos(angle) * 4,
+      y: Math.sin(angle) * 4,
+    });
+    projectiles.push(projectile);
   });
-  projectiles.push(projectile);
-});
+}else {
+  
+  addEventListener("click", function fire(e) {
+    
+    const vx = e.clientX - canvas.width / 2;
+    const vy = e.clientY - canvas.height / 2;
+    const angle = Math.atan2(vy, vx);
+  
+    const projectile = new Projectile(x, y, 5, "white", {
+      x: Math.cos(angle) * 4,
+      y: Math.sin(angle) * 4,
+    });
+    projectiles.push(projectile);
+  });
+}
 
 startGameBtn.addEventListener("click", () => {
   init();
