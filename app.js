@@ -251,7 +251,7 @@ function init() {
  *
  */
 
-addEventListener("click", (e) => {
+widnow.addEventListener("click", (e) => {
   const vx = e.clientX - canvas.width / 2;
   const vy = e.clientY - canvas.height / 2;
   const angle = Math.atan2(vy, vx);
