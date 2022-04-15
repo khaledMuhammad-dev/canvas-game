@@ -269,3 +269,6 @@ startGameBtn.addEventListener("click", () => {
   spawnEnemy();
   model.style.display = "none";
 });
+
+
+/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera/i.test(navigator.userAgent) ? alert("mobile") : alert("desktop");
