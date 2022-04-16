@@ -18,6 +18,7 @@ let projectiles = [];
 let enemies = [];
 let particles = [];
 let animationID;
+let intervalId;
 
 /**
  * End Global Variables
@@ -212,7 +213,7 @@ function animate() {
 }
 
 function spawnEnemy() {
-  setInterval(() => {
+  intervalId = setInterval(() => {
     const radius = Math.random() * 26 + 4;
     let x;
     let y;
@@ -244,6 +245,7 @@ function init() {
   score = 0;
   scoreEl.innerText = score;
   modelScoreEl.innerText = score;
+  if (intervalId) clearInterval(intervalId);
 }
 
 /**
@@ -256,28 +258,24 @@ const device = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera/i.test(
   ? "mobile"
   : "desktop";
 
-
-if(device === "mobile") {
+if (device === "mobile") {
   addEventListener("touchstart", function fire(e) {
-    
     const vx = e.touches[0].clientX - canvas.width / 2;
     const vy = e.touches[0].clientY - canvas.height / 2;
     const angle = Math.atan2(vy, vx);
-  
+
     const projectile = new Projectile(x, y, 5, "white", {
       x: Math.cos(angle) * 4,
       y: Math.sin(angle) * 4,
     });
     projectiles.push(projectile);
   });
-}else {
-  
+} else {
   addEventListener("click", function fire(e) {
-    
     const vx = e.clientX - canvas.width / 2;
     const vy = e.clientY - canvas.height / 2;
     const angle = Math.atan2(vy, vx);
-  
+
     const projectile = new Projectile(x, y, 5, "white", {
       x: Math.cos(angle) * 4,
       y: Math.sin(angle) * 4,
