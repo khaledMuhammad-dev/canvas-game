@@ -10,7 +10,7 @@ const scoreEl = document.querySelector("#scoreEl");
 const modelScoreEl = document.querySelector("h1");
 
 /**
- * Begin Global Variables
+ * Begin Global States
  *
  */
 let score = 0;
@@ -21,7 +21,7 @@ let animationID;
 let intervalId;
 
 /**
- * End Global Variables
+ * End Global States
  * Brgin Classes
  */
 
